@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="ivil.png"><SubTexture name="ivil happy0000" x="0" y="0" width="904" height="904" frameX="0" frameY="0" frameWidth="904" frameHeight="904" />
+<SubTexture name="ivil crying0000" x="904" y="0" width="904" height="904" frameX="0" frameY="0" frameWidth="904" frameHeight="904" />
+<SubTexture name="ivil down0000" x="0" y="904" width="904" height="904" frameX="0" frameY="0" frameWidth="904" frameHeight="904" />
+<SubTexture name="ivil whot0000" x="904" y="904" width="904" height="904" frameX="0" frameY="0" frameWidth="904" frameHeight="904" />
+<SubTexture name="ivil angy0000" x="0" y="1808" width="904" height="904" frameX="0" frameY="0" frameWidth="904" frameHeight="904" />
+</TextureAtlas>

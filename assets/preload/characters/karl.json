@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				-1,
+				0
+			],
+			"anim": "idle",
+			"fps": 20,
+			"name": "Karl idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-9,
+				10
+			],
+			"anim": "singLEFT",
+			"fps": 20,
+			"name": "Karl left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				-30
+			],
+			"anim": "singDOWN",
+			"fps": 20,
+			"name": "Karl down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-6,
+				50
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "Karl up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				27
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "Karl right",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/Karl",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "karl",
+	"flip_x": false,
+	"healthbar_colors": [
+		255,
+		75,
+		0
+	],
+	"camera_position": [
+		60,
+		-50
+	],
+	"sing_duration": 6.1,
+	"scale": 1
+}
