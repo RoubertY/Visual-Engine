@@ -8,9 +8,12 @@ You can do this with: `haxelib install linc_luajit` on a Command prompt/PowerShe
 
 ...Or if you don't want your mod to be able to run .lua scripts, delete the "LUA_ALLOWED" line on Project.xml
 
-## Credits:
+## Psych Engine Credits:
 * Shadow Mario - Coding
 * RiverOaken - Arts and Animations
+
+## Credits:
+* Roubert21 - who made ALL of this
 
 ### Special Thanks
 * Keoiki - Note Splash Animations
