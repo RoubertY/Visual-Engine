@@ -57,8 +57,7 @@ class StoryMenuState extends MusicBeatState
 		"PICO",
 		"MOMMY MUST MURDER",
 		"RED SNOW",
-		"hating simulator ft. moawling",
-		"kool man does rapping"
+		"hating simulator ft. moawling"
 	];
 
 	//Background asset name, the background files are stored on assets/preload/menubackgrounds/

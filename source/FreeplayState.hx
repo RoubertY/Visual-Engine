@@ -52,6 +52,8 @@ class FreeplayState extends MusicBeatState
 	private var iconArray:Array<HealthIcon> = [];
 	public static var coolColors:Array<Int> = [];
 
+	var thingForLessCoding = 0;
+
 	var bg:FlxSprite;
 	var intendedColor:Int;
 	var colorTween:FlxTween;
@@ -60,6 +62,8 @@ class FreeplayState extends MusicBeatState
 	{
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
+
+		/*
 		var initSonglist = CoolUtil.coolTextFile(Paths.txt('freeplaySonglist'));
 		for (i in 0...initSonglist.length)
 		{
@@ -67,10 +71,32 @@ class FreeplayState extends MusicBeatState
 			addSong(songArray[0], 0, songArray[1]);
 			songs[songs.length-1].color = Std.parseInt(songArray[2]);
 		}
+		*/
+
 		var colorsList = CoolUtil.coolTextFile(Paths.txt('freeplayColors'));
 		for (i in 0...colorsList.length)
 		{
 			coolColors.push(Std.parseInt(colorsList[i]));
+		}
+		/*
+		for (i in 1...3)
+		{
+			thingForLessCoding = i;
+		}
+		*/
+		var modList = CoolUtil.coolTextFile(Paths.mods('songList.txt'));
+		for (i in 0...modList.length)
+		{
+			var songArray = modList[i].split(":");
+			if(songArray[1] != null && songArray[0] != null) {
+				addSong(songArray[1], 0, songArray[0]);
+			}
+			if(songArray[2] != null && songArray[0] != null) {
+				addSong(songArray[2], 0, songArray[0]);
+			}
+			if(songArray[3] != null && songArray[0] != null) {
+				addSong(songArray[3], 0, songArray[0]);
+			}
 		}
 
 		/* 
@@ -145,17 +171,13 @@ class FreeplayState extends MusicBeatState
 		// JUST DOIN THIS SHIT FOR TESTING!!!
 		/* 
 			var md:String = Markdown.markdownToHtml(Assets.getText('CHANGELOG.md'));
-
 			var texFel:TextField = new TextField();
 			texFel.width = FlxG.width;
 			texFel.height = FlxG.height;
 			// texFel.
 			texFel.htmlText = md;
-
 			FlxG.stage.addChild(texFel);
-
 			// scoreText.textField.htmlText = md;
-
 			trace(md);
 		 */
 
@@ -207,12 +229,12 @@ class FreeplayState extends MusicBeatState
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
-
+		
 		grpSongs.forEach(function(obj:Alphabet)
 		{
 			obj.x = 20;
 		});
-
+		
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, CoolUtil.boundTo(elapsed * 24, 0, 1)));
 		lerpRating = FlxMath.lerp(lerpRating, intendedRating, CoolUtil.boundTo(elapsed * 12, 0, 1));
 

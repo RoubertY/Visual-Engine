@@ -25,7 +25,6 @@ class WeekData {
 		null,	//Week 3
 		null,	//Week 4
 		null,	//Week 5
-		null,   //Week 6
 		null
 	];
 

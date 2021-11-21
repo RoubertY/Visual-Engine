@@ -80,6 +80,11 @@ class Paths
 		return getPath('data/$key.txt', TEXT, library);
 	}
 
+	inline static public function modTxt(key:String, ?library:String)
+	{
+		return getPath('data/mods/$key.txt', TEXT, library);
+	}
+
 	inline static public function xml(key:String, ?library:String)
 	{
 		return getPath('data/$key.xml', TEXT, library);
@@ -228,7 +233,7 @@ class Paths
 		return mods('images/' + key + '.xml');
 	}
 	inline static public function modsTxt(key:String) {
-		return mods('images/' + key + '.xml');
+		return mods('images/' + key + '.txt');
 	}
 	#end
 }

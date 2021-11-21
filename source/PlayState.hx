@@ -2138,21 +2138,25 @@ class PlayState extends MusicBeatState
 						switch (Math.abs(daNote.noteData))
 						{
 							case 0:
+								// camFollow.x = dad.getMidpoint().x
 								if(isDad) {
 									camFollow.x = dad.getMidpoint().x - 50;
 								}
 								animToPlay = 'singLEFT';
 							case 1:
+								// camFollow.y = dad.getMidpoint().y
 								if(isDad) {
 									camFollow.y = dad.getMidpoint().y + 50;
 								}
 								animToPlay = 'singDOWN';
 							case 2:
+								// camFollow.y = dad.getMidpoint().y
 								if(isDad) {
-									camFollow.y = dad.getMidpoint().y - 25 * 2;
+									camFollow.y = dad.getMidpoint().y - 120;
 								}
 								animToPlay = 'singUP';
 							case 3:
+								// camFollow.x = dad.getMidpoint().x
 								if(isDad) {
 									camFollow.x = dad.getMidpoint().x + 50;
 								}
@@ -3550,13 +3554,25 @@ class PlayState extends MusicBeatState
 		if(curBeat % 2 == 0) {
 			if (!boyfriend.animation.curAnim.name.startsWith("sing") && !boyfriend.specialAnim)
 			{
+				if(!isDad) {
+					camFollow.x = boyfriend.getMidpoint().x;
+					camFollow.y = boyfriend.getMidpoint().y;
+				}
 				boyfriend.dance();
 			}
 			if (!dad.animation.curAnim.name.startsWith("sing") && !dad.stunned)
 			{
+				if(isDad) {
+					camFollow.x = dad.getMidpoint().x;
+					camFollow.y = dad.getMidpoint().y;
+				}
 				dad.dance();
 			}
 		} else if(dad.danceIdle && !dad.curCharacter.startsWith('gf') && !dad.animation.curAnim.name.startsWith("sing") && !dad.stunned) {
+			if(isDad) {
+				camFollow.x = dad.getMidpoint().x;
+				camFollow.y = dad.getMidpoint().y;
+			}
 			dad.dance();
 		}
 
