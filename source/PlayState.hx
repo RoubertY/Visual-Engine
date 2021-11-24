@@ -1702,6 +1702,7 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
+		var lerpVal:Float = CoolUtil.boundTo(elapsed * 2.4, 0, 1);
 		#if !debug
 		perfectMode = false;
 		#end
@@ -1826,8 +1827,7 @@ class PlayState extends MusicBeatState
 		}
 
 		if(!inCutscene) {
-			var lerpVal:Float = CoolUtil.boundTo(elapsed * 2.4, 0, 1);
-			camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
+			camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, CoolUtil.boundTo(elapsed * 2.4, 0, 1)), FlxMath.lerp(camFollowPos.y, camFollow.y, CoolUtil.boundTo(elapsed * 2.4, 0, 1)));
 			if(!startingSong && !endingSong && boyfriend.animation.curAnim.name.startsWith('idle')) {
 				boyfriendIdleTime += elapsed;
 				if(boyfriendIdleTime >= 0.15) { // Kind of a mercy thing for making the achievement easier to get as it's apparently frustrating to some playerss
@@ -2138,26 +2138,42 @@ class PlayState extends MusicBeatState
 						switch (Math.abs(daNote.noteData))
 						{
 							case 0:
-								// camFollow.x = dad.getMidpoint().x
+								// FlxTween.cancel();
 								if(isDad) {
+									camFollow.x = dad.getMidpoint().x;
+									camFollow.y = dad.getMidpoint().y;
+									// camFollowPos.x = FlxMath.lerp(camFollowPos.x, boyfriend.getMidpoint().x - 50, CoolUtil.boundTo(elapsed * 2.4, 0, 1));
+									// camFollow.x = camFollow.x - 50;
 									camFollow.x = dad.getMidpoint().x - 50;
 								}
 								animToPlay = 'singLEFT';
 							case 1:
-								// camFollow.y = dad.getMidpoint().y
+								// FlxTween.cancel();
 								if(isDad) {
+									camFollow.x = dad.getMidpoint().x;
+									camFollow.y = dad.getMidpoint().y;
+									// camFollowPos.x = FlxMath.lerp(camFollowPos.y, boyfriend.getMidpoint().y + 50, CoolUtil.boundTo(elapsed * 2.4, 0, 1));
+									// camFollow.y = camFollow.y + 50;
 									camFollow.y = dad.getMidpoint().y + 50;
 								}
 								animToPlay = 'singDOWN';
 							case 2:
-								// camFollow.y = dad.getMidpoint().y
+								// FlxTween.cancel();
 								if(isDad) {
-									camFollow.y = dad.getMidpoint().y - 120;
+									camFollow.x = dad.getMidpoint().x;
+									camFollow.y = dad.getMidpoint().y;
+									// camFollowPos.x = FlxMath.lerp(camFollowPos.y, boyfriend.getMidpoint().y - 50, CoolUtil.boundTo(elapsed * 2.4, 0, 1));
+									// camFollow.y = camFollow.y - 50;
+									camFollow.x = dad.getMidpoint().y - 50;
 								}
 								animToPlay = 'singUP';
 							case 3:
-								// camFollow.x = dad.getMidpoint().x
+								// FlxTween.cancel();
 								if(isDad) {
+									camFollow.x = dad.getMidpoint().x;
+									camFollow.y = dad.getMidpoint().y;
+									// camFollowPos.x = FlxMath.lerp(camFollowPos.y, boyfriend.getMidpoint().y + 50, CoolUtil.boundTo(elapsed * 2.4, 0, 1));
+									// camFollow.x = camFollow.x + 50;
 									camFollow.x = dad.getMidpoint().x + 50;
 								}
 								animToPlay = 'singRIGHT';
@@ -2282,6 +2298,8 @@ class PlayState extends MusicBeatState
 				keyShit();
 			} else if(boyfriend.holdTimer > Conductor.stepCrochet * 0.001 * boyfriend.singDuration && boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss')) {
 				boyfriend.dance();
+				camFollow.x = boyfriend.getMidpoint().x;
+				camFollow.y = boyfriend.getMidpoint().y;
 			}
 		}
 
@@ -2621,7 +2639,7 @@ class PlayState extends MusicBeatState
 
 	public function moveCamera(isDad:Bool) {
 		if(isDad) {
-			camFollow.set(dad.getMidpoint().x + 150, dad.getMidpoint().y - 100);
+			// camFollow.set(dad.getMidpoint().x + 150, dad.getMidpoint().y - 100);
 			// camFollow.x += dad.cameraPosition[0];
 			// camFollow.y += dad.cameraPosition[1];
 			
@@ -2633,8 +2651,8 @@ class PlayState extends MusicBeatState
 				tweenCamIn();
 			}
 		} else {
-			camFollow.set(boyfriend.getMidpoint().x - 100, boyfriend.getMidpoint().y - 100);
-
+			// camFollow.set(boyfriend.getMidpoint().x - 100, boyfriend.getMidpoint().y - 100);
+			/*
 			switch (curStage)
 			{
 				case 'limo':
@@ -2645,7 +2663,7 @@ class PlayState extends MusicBeatState
 					camFollow.x = boyfriend.getMidpoint().x - 200;
 					camFollow.y = boyfriend.getMidpoint().y - 200;
 			}
-
+			*/
 			// camFollow.x -= boyfriend.cameraPosition[0];
 			// camFollow.y += boyfriend.cameraPosition[1];
 
@@ -3245,23 +3263,43 @@ class PlayState extends MusicBeatState
 				switch (Std.int(Math.abs(note.noteData)))
 				{
 					case 0:
+						// FlxTween.cancel();
 						if(!isDad) {
-							camFollow.x = boyfriend.getMidpoint().x - 25;
+							camFollow.x = boyfriend.getMidpoint().x;
+							camFollow.y = boyfriend.getMidpoint().y;
+							// camFollowPos.x = FlxMath.lerp(camFollowPos.x, boyfriend.getMidpoint().x + 50, CoolUtil.boundTo(elapsed * 2.4, 0, 1));
+							// camFollow.x = camFollow.x + 50;
+							camFollow.x = boyfriend.getMidpoint().x - 50; 
 						}
 						animToPlay = 'singLEFT';
 					case 1:
+						// FlxTween.cancel();
 						if(!isDad) {
-							camFollow.y = boyfriend.getMidpoint().y + 25;
+							camFollow.x = boyfriend.getMidpoint().x;
+							camFollow.y = boyfriend.getMidpoint().y;
+							// camFollowPos.y = FlxMath.lerp(camFollowPos.y, boyfriend.getMidpoint().y + 50, CoolUtil.boundTo(elapsed * 2.4, 0, 1));
+							// camFollow.y = camFollow.y + 50;
+							camFollow.y = boyfriend.getMidpoint().y + 50;
 						}
 						animToPlay = 'singDOWN';
 					case 2:
+						// FlxTween.cancel();
 						if(!isDad) {
-							camFollow.y = boyfriend.getMidpoint().y - 25 * 2;
+							camFollow.x = boyfriend.getMidpoint().x;
+							camFollow.y = boyfriend.getMidpoint().y;
+							// camFollowPos.y = FlxMath.lerp(camFollowPos.y, boyfriend.getMidpoint().y - 50, CoolUtil.boundTo(elapsed * 2.4, 0, 1));
+							// camFollow.y = camFollow.y - 50;
+							camFollow.y = boyfriend.getMidpoint().y - 50;
 						}
 						animToPlay = 'singUP';
 					case 3:
+						// FlxTween.cancel();
 						if(!isDad) {
-							camFollow.x = boyfriend.getMidpoint().x + 25;
+							camFollow.x = boyfriend.getMidpoint().x;
+							camFollow.y = boyfriend.getMidpoint().y;
+							// camFollowPos.x = FlxMath.lerp(camFollowPos.x, boyfriend.getMidpoint().x - 50, CoolUtil.boundTo(elapsed * 2.4, 0, 1));
+							// camFollow.x = camFollow.x - 50;
+							camFollow.x = boyfriend.getMidpoint().x + 50;
 						}
 						animToPlay = 'singRIGHT';
 				}
@@ -3554,25 +3592,13 @@ class PlayState extends MusicBeatState
 		if(curBeat % 2 == 0) {
 			if (!boyfriend.animation.curAnim.name.startsWith("sing") && !boyfriend.specialAnim)
 			{
-				if(!isDad) {
-					camFollow.x = boyfriend.getMidpoint().x;
-					camFollow.y = boyfriend.getMidpoint().y;
-				}
 				boyfriend.dance();
 			}
 			if (!dad.animation.curAnim.name.startsWith("sing") && !dad.stunned)
 			{
-				if(isDad) {
-					camFollow.x = dad.getMidpoint().x;
-					camFollow.y = dad.getMidpoint().y;
-				}
 				dad.dance();
 			}
 		} else if(dad.danceIdle && !dad.curCharacter.startsWith('gf') && !dad.animation.curAnim.name.startsWith("sing") && !dad.stunned) {
-			if(isDad) {
-				camFollow.x = dad.getMidpoint().x;
-				camFollow.y = dad.getMidpoint().y;
-			}
 			dad.dance();
 		}
 
